@@ -13,35 +13,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef LANTERNPOLYGON_H
+#define LANTERNPOLYGON_H
 
 #include <SDL/SDL.h>
-#include<iostream>
-#include "line2array.h"
+#include<vector>
+#include "polygon.h"
 
 namespace lanternlight
 {
 
-class Player
+class LanternPolygon : public Polygon
 {
 	public:
-	Player(int xx, int yy);
-	virtual ~Player();
-
-	void setmoving(int b);
-	void moveto(int xx, int yy);
-	void update();
-	void draw(SDL_Surface *screen);
+	LanternPolygon();
+	virtual ~LanternPolygon();
+	int initclosestline(int entityx, int entityy);
+	int go(int px, int py);
 
 	protected:
-		int _x, _y, _dk;
-		int _moving;
-		// a vector containing the line points  for moving over
-		//that line
-		std::vector<bessie::line2arrayPoint*> *_movepoints;
-		int _movepointsn;
-		SDL_Surface *_surface;
+	int _currentn;
+	std::vector<Line<LineType> *>::iterator _linesiter;
+
+
 };	
 
 }//namespace lanternlight

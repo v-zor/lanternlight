@@ -30,6 +30,9 @@ Player::Player(int xx, int yy)
 	imgsys.load("./pics/tile1grass.bmp",&_surface);
 	_movepointsn = 0;
 	_moving = 0;
+
+	_dk = 6;
+
 }
 
 Player::~Player()
@@ -56,7 +59,7 @@ void Player::update()
 
 		_x = (*_movepoints)[_movepointsn]->get_x();
 		_y = (*_movepoints)[_movepointsn]->get_y();
-		_movepointsn++;
+		_movepointsn+=_dk;
 	}
 }
 

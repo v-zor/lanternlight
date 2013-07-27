@@ -6,11 +6,12 @@ LIBS = -L/usr/local/lib -lSDL
 
 all:
 	cd bessie; $(MAKE) $(MFLAGS)
+	cd math; $(MAKE) $(MFLAGS)
 	cd src; $(MAKE) $(MFLAGS)
 	${CXX} ${CXXFLAGS} -o lanternlight bessie/*.o src/*.o ${LIBS}
 
 clean:
-	rm -f bessie/*.o src/*.o lanternlight *.core
+	rm -f bessie/*.o math/*.o src/*.o lanternlight *.core
 
 .cpp.o:
 	$(CXX) $(CXXFLAGS) $< -o $@

@@ -13,35 +13,56 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef LINE_H
+#define LINE_H
 
 #include <SDL/SDL.h>
-#include<iostream>
 #include "line2array.h"
 
 namespace lanternlight
 {
 
-class Player
+class Point
 {
 	public:
-	Player(int xx, int yy);
-	virtual ~Player();
+		Point(int xx, int yy) { _x = xx; _y = yy; }
+		int _x, _y;
+};
 
-	void setmoving(int b);
-	void moveto(int xx, int yy);
-	void update();
-	void draw(SDL_Surface *screen);
+enum LINETYPE { LEFTLINE = 100, RIGHTLINE = 200, UPLINE = 300, DOWNLINE = 400, }; 
+
+class LineType
+{
+	public:
+		LINETYPE _id;
+
+	LINETYPE operator()() { return _id; }
+
+};
+
+template<typename S>
+class Line
+{
+	public:
+	Line(int x1, int y1, int x2, int y2);
+	virtual ~Line();
+	Point *norm();
+	///float norm();
+	float crossproduct(Line *ln);
+	float distance(int entityx, int entityy);
+
+	int get_x1() { return _x1; }
+	int get_y1() { return _y1; }
+	int get_x2() { return _x2; }
+	int get_y2() { return _y2; }
+
+	LINETYPE quadrant();
 
 	protected:
-		int _x, _y, _dk;
-		int _moving;
-		// a vector containing the line points  for moving over
-		//that line
-		std::vector<bessie::line2arrayPoint*> *_movepoints;
-		int _movepointsn;
-		SDL_Surface *_surface;
+
+	private:
+	LineType _linetype;
+	int _x1,_y1,_x2,_y2;
 };	
 
 }//namespace lanternlight

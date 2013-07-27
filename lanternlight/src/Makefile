@@ -1,13 +1,10 @@
 CXX = g++
-CXXFLAGS = -g -I/usr/local/include -I../bessie
+CXXFLAGS = -g -I/usr/local/include -I../bessie -I../math
 OBJS = main.o player.o
 
 all:
 	${CXX} ${CXXFLAGS} -c main.cpp
 	${CXX} ${CXXFLAGS} -c player.cpp
-	${CXX} ${CXXFLAGS} -c line.cpp
-	${CXX} ${CXXFLAGS} -c polygon.cpp
-	${CXX} ${CXXFLAGS} -c lanternpolygon.cpp
 
 clean: 
 	rm -f *.o
