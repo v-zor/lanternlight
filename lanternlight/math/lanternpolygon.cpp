@@ -67,18 +67,102 @@ int LanternPolygon::go(int entityx, int entityy)
 
 	//FIX dynamic_cast
 	switch(currentline->quadrant()) {
-	case LEFTLINE:{
+	case QUADRANT1LINE:{
 		switch (ln1->quadrant()) {
-		case LEFTLINE:{
+		case QUADRANT1LINE:{
+			/* same quadrant, collider currentline stays the same */
+			break;
+		}
+		case QUADRANT2LINE:{
 			++_currentn %= _lines->size();
 			break;
 		}
-		break;
+		case QUADRANT3LINE:{
+			break;
+		}
+		case QUADRANT4LINE:{
+			/* entity went down, currentline becomes something else */
+			--_currentn;
+			if (_currentn == 0)
+				_currentn = _lines->size()-1;
+			break;
+		}
+		default:
+			break;
 	}
 	}
-	case RIGHTLINE: 
-	case UPLINE: 
-	case DOWNLINE: 
+	case QUADRANT2LINE:{
+		switch (ln1->quadrant()) {
+		case QUADRANT1LINE:{
+			/* entity went down, currentline becomes something else */
+			--_currentn;
+			if (_currentn == 0)
+				_currentn = _lines->size()-1;
+			break;
+		}
+		case QUADRANT2LINE:{
+			/* same quadrant, collider currentline stays the same */
+			break;
+		}
+		case QUADRANT3LINE:{
+			++_currentn %= _lines->size();
+			break;
+		}
+		case QUADRANT4LINE:{
+			break;
+		}
+		default:
+			break;
+	}
+	}
+	case QUADRANT3LINE:{ 
+		switch (ln1->quadrant()) {
+		case QUADRANT1LINE:{
+			/* same quadrant, collider currentline stays the same */
+			break;
+		}
+		case QUADRANT2LINE:{
+			--_currentn;
+			if (_currentn == 0)
+				_currentn = _lines->size()-1;
+			break;
+		}
+		case QUADRANT3LINE:{
+			break;
+		}
+		case QUADRANT4LINE:{
+			/* entity went down, currentline becomes something else */
+			++_currentn %= _lines->size();
+			break;
+		}
+		default:
+			break;
+	}
+	}
+	case QUADRANT4LINE:{ 
+		switch (ln1->quadrant()) {
+		case QUADRANT1LINE:{
+			/* entity went down, currentline becomes something else */
+			++_currentn %= _lines->size();
+			break;
+		}
+		case QUADRANT2LINE:{
+			break;
+		}
+		case QUADRANT3LINE:{
+			--_currentn;
+			if (_currentn == 0)
+				_currentn = _lines->size()-1;
+			break;
+		}
+		case QUADRANT4LINE:{
+			/* same quadrant, collider currentline stays the same */
+			break;
+		}
+		default:
+			break;
+	}
+	}
 	default:
 		break;
 	}

@@ -42,7 +42,20 @@ template<typename S>
 LINETYPE Line<S>::quadrant()
 {
 	//FIX calculate quadrant from x1,y1 and x2,y2
-	return LEFTLINE;
+	//left upper lines for collide, first quadrant
+	if (_x1 <= _x2 && _y1 <= _y2)
+		return QUADRANT1LINE;
+	//right upper lines for collide, second quadrant
+	if (_x1 <= _x2 && _y1 >= _y2)
+		return QUADRANT2LINE;	
+	//right down lines for collide, third quadrant
+	if (_x1 >= _x2 && _y1 <= _y2)
+		return QUADRANT3LINE;	
+	//left down lines for collide, fourth quadrant
+	if (_x1 >= _x2 && _y1 >= _y2)
+		return QUADRANT4LINE;	
+
+	return NOLINE;
 }
 
 template<typename S>
