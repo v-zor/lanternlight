@@ -8,7 +8,7 @@ all:
 	cd bessie; $(MAKE) $(MFLAGS)
 	cd math; $(MAKE) $(MFLAGS)
 	cd src; $(MAKE) $(MFLAGS)
-	${CXX} ${CXXFLAGS} -o lanternlight bessie/*.o src/*.o $(LIBS)
+	${CXX} ${CXXFLAGS} -o lanternlight bessie/*.o src/*.o $(LIBS) -lole32 -loleaut32
 
 clean:
 	rm -f bessie/*.o math/*.o src/*.o lanternlight *.core
