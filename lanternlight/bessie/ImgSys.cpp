@@ -25,7 +25,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include"ImgSys.h"
 #include "util.h"
 
@@ -71,9 +71,9 @@ int ImgSys::reload(string filename, SDL_Surface **surface)
 int ImgSys::filein(string filename, SDL_Surface **surface)
 {
 	SDL_Surface *ts = SDL_LoadBMP(const_cast<char*>(bessie::cs(filename)));//cs returns c_str
-	*surface = SDL_DisplayFormat(ts);
+	/*FIX *surface = SDL_DisplayFormat(ts);
 	SDL_SetColorKey (*surface,SDL_SRCCOLORKEY,_colorkey);
-	return(0);
+	return(0);*/
 }
 
 }

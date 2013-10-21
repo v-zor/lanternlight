@@ -25,7 +25,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include<iostream>
 #include "player.h"
 #include "line2array.h"
@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	SDL_Surface *screen = SDL_SetVideoMode(800,600,32,SDL_DOUBLEBUF|SDL_HWSURFACE);
+	SDL_Surface *screen;/*FIX = SDL_SetVideoMode(800,600,32,SDL_DOUBLEBUF|SDL_HWSURFACE); */
 
 	lanternlight::Player player(100,100);
 
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 		SDL_BlitSurface(blanksurface, NULL,screen,&screenr);
 		player.update();	
 		player.draw(screen);	
-		SDL_Flip(screen);
+		//FIX SDL_Flip(screen);
 	}
 
 	return 0;

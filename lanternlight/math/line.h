@@ -28,7 +28,7 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include "line2array.h"
 
 namespace lanternlight

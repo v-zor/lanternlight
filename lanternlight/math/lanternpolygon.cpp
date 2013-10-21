@@ -25,8 +25,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include<iostream>
+#include<limits.h>
 #include "util.h"
 #include "lanternpolygon.h"
 

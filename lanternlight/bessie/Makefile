@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g -I/usr/local/include
+CXXFLAGS = -g $(shell sdl2-config --cflags)
 OBJS = Draw.o Draw2.o
 
 all:

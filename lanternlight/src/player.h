@@ -28,7 +28,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include<iostream>
 #include "line2array.h"
 

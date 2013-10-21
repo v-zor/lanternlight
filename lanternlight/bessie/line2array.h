@@ -28,7 +28,7 @@
 #ifndef RM_LINE2DRAW2_H
 #define RM_LINE2DRAW2_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include<vector>
 
 namespace bessie

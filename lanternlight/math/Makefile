@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g -I/usr/local/include -I../bessie
+CXXFLAGS = -g $(shell sdl2-config --cflags) -I../bessie
 OBJS = main.o player.o
 
 all:

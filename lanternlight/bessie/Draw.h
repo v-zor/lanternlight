@@ -28,7 +28,7 @@
 #ifndef _DRAW_H_
 #define _DRAW_H_
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 /*
 NOTE: maker sure putpixel does not go beyond the screen surf

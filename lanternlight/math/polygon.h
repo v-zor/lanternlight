@@ -28,7 +28,7 @@
 #ifndef POLYGON_H
 #define POLYGON_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include<vector>
 #include "line.h"
 

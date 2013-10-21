@@ -28,7 +28,7 @@
 #ifndef RM_DRAW2_H
 #define RM_DRAW2_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 
 namespace bessie
 {

@@ -28,7 +28,7 @@
 #ifndef IMGSYS_H
 #define IMGSYS_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include<string>
 #include<map>
 //#include<unistd.h>

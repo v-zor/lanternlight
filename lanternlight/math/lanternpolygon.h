@@ -28,7 +28,7 @@
 #ifndef LANTERNPOLYGON_H
 #define LANTERNPOLYGON_H
 
-#include <SDL/SDL.h>
+#include <SDL.h>
 #include<vector>
 #include "polygon.h"
 
