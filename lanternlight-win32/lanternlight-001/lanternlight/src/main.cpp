@@ -38,34 +38,28 @@
 #pragma comment(lib, "SDL.lib")
 #pragma comment(lib, "SDLmain.lib")
 //#endif
-//int wmain(int argc, wchar_t *argv[])
-//int _tmain()
+
 int main(int argc, char *argv[])
-//int main()
 {
-	/*
-	SDL_Window *screen = SDL_CreateWindow("Lanternlight 001",
-	                          SDL_WINDOWPOS_UNDEFINED,
-	                          SDL_WINDOWPOS_UNDEFINED,
-	                          800, 600,
-	                          0*//*SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_OPENGL*//*);*/
-	//SDL_Renderer *renderer = SDL_CreateRenderer(screen, -1, 0);
-	//SDL_SetRelativeMouseMode(SDL_TRUE);
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	SDL_Surface *screen = SDL_SetVideoMode(800,600,32,SDL_DOUBLEBUF|SDL_HWSURFACE);
 
-	lanternlight::Player player(100,100);
+	//lanternlight::Player player(100,100);
 
 	SDL_Surface *blanksurface;
 	bessie::image::ImgSys imgsys;
-	//imgsys.set_colorkey(0xff);
-	//imgsys.load("./pics/blank-800x600.bmp", &blanksurface);
+	imgsys.set_colorkey(0xffffffff);
+	if (imgsys.load(/*"../lanternlight/pics/blank-800x600.bmp"*/
+			"../lanternlight/pics/tile1grass.bmp"
+			, &blanksurface) < 0)
+		exit(0);
+
 	SDL_Rect screenr;
 	screenr.x = 0;
 	screenr.y = 0;
-	screenr.w = 800;//FIX
-	screenr.h = 600;
+	//screenr.w = 800;//FIX
+	//screenr.h = 600;
 	
 
 	bool terminate  = false;
@@ -82,20 +76,20 @@ int main(int argc, char *argv[])
 			int xx,yy;
 			//FIX SDL_GetMouseState(&xx,&yy);
 			//bessie::line2array(&x1,&y1,&x2,&y2);
-			player.moveto(xx,yy);
-			player.setmoving(1);
+			//player.moveto(xx,yy);
+			//player.setmoving(1);
 			break;
 		}
 		case SDL_MOUSEBUTTONUP:{
-			player.setmoving(0);
+			//player.setmoving(0);
 			break;
 		}
 		}
 		}
-		//FIX SDL_BlitSurface(blanksurface, NULL,screen,&screenr);
-		player.update();	
-		//FIX player.draw(screen);
-		//FIX SDL_Flip(screen);
+		SDL_BlitSurface(blanksurface, NULL,screen,&screenr);
+		//player.update();
+		//player.draw(screen);
+		SDL_Flip(screen);
 	}
 
 	return 0;
