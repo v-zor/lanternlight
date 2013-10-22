@@ -1,0 +1,3 @@
+edit GAMEFILEROOT to your "./pics/" top directory in lanternconfig.h (in bessie directory)
+
+then load the top directory (where this file is) in eclipse and build & run.

@@ -1,5 +1,5 @@
 /*
-# Copyright (C) Johan Ceuppens 2013
+# Copyright (C) Johan Ceuppens 2010--2013
 # Redistribution and use in source and binary forms are permitted
 # provided that the above copyright notice and this paragraph are
 # duplicated in all such forms and that any documentation,
@@ -25,17 +25,53 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#include "surface.h"
+#include "util.h"
 
+#include <iostream>
 
-#include "linetype.h"
-
-namespace lanternlight
+namespace bessie
+{
+namespace image
 {
 
-LineType::LineType() : _id(NOLINE)
-{}
+template<typename S>
+Surface<S>::Surface()
+{
+	_surface = NULL;
+}
 
-LineType::~LineType()
-{}
+template<typename S>
+Surface<S>::~Surface()
+{
+	//FIX if (_surface != NULL) ;
+}
 
-}//namespace lanternlight
+template<typename S>
+int Surface<S>::load(string filename)
+{
+	if ( !filename.length() ) { _surface = NULL; return(-1); }
+	filein(filename);
+	return 0;
+}
+
+template<typename S>
+int Surface<S>::filein(string filename)
+{
+	S ts = SDL_LoadBMP(filename.c_str());
+	_surface = SDL_DisplayFormat(ts);
+	SDL_FreeSurface(ts);
+	std::cout<<"filen="<<filename.c_str()<<std::endl;
+	//FIX SDL_SetColorKey (_surface,SDL_SRCCOLORKEY,_colorkey);
+	return 0;
+}
+
+template<typename S>
+S& Surface<S>::get()
+{
+	return _surface;
+}
+
+template class Surface<SDL_Surface *>;
+}
+}

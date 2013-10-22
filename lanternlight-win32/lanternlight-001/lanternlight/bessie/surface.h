@@ -1,5 +1,5 @@
 /*
-# Copyright (C) Johan Ceuppens 2013
+# Copyright (C) Johan Ceuppens 2010--2013
 # Redistribution and use in source and binary forms are permitted
 # provided that the above copyright notice and this paragraph are
 # duplicated in all such forms and that any documentation,
@@ -27,15 +27,36 @@
 */
 
 
-#include "linetype.h"
+#ifndef SURFACE_H_
+#define SURFACE_H_
 
-namespace lanternlight
+#include <string>
+#include "../include/SDL.h"
+
+using namespace std;
+
+namespace bessie
+{
+namespace image
 {
 
-LineType::LineType() : _id(NOLINE)
-{}
+template<typename S>
+class Surface
+{
+public:
+	Surface();
+	virtual ~Surface();
 
-LineType::~LineType()
-{}
+	int load(string filename);
+	int filein(string filename);
 
-}//namespace lanternlight
+	S& get();
+
+private:
+	S _surface;
+};
+
+}
+}
+
+#endif /* SURFACE_H_ */

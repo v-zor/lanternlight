@@ -1,5 +1,5 @@
 /*
-# Copyright (C) Johan Ceuppens 2013
+# Copyright (C) Johan Ceuppens 2010-2013
 # Redistribution and use in source and binary forms are permitted
 # provided that the above copyright notice and this paragraph are
 # duplicated in all such forms and that any documentation,
@@ -25,17 +25,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+#ifndef LANTERNCONFIG_H_
+#define LANTERNCONFIG_H_
 
 
-#include "linetype.h"
+#define GAMEFILEROOT "../lanternlight/pics/"
 
-namespace lanternlight
-{
 
-LineType::LineType() : _id(NOLINE)
-{}
-
-LineType::~LineType()
-{}
-
-}//namespace lanternlight
+#endif /* LANTERNCONFIG_H_ */

@@ -38,7 +38,7 @@ Player::Player(int xx, int yy)
 {
 	_x = xx;
 	_y = yy;
-	bessie::image::ImgSys imgsys;
+	bessie::image::ImgSys<SDL_Surface*> imgsys;
 	//FIX imgsys.load("./pics/tile1grass.bmp",&_surface);
 	_movepointsn = 0;
 	_moving = 0;

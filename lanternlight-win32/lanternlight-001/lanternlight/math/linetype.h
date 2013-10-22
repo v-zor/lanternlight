@@ -26,12 +26,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*
- * linetype.h
- *
- *  Created on: Oct 22, 2013
- *      Author: bubble
- */
+
 
 #ifndef LINETYPE_H_
 #define LINETYPE_H_

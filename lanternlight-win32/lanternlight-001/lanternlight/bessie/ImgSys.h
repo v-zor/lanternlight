@@ -39,6 +39,7 @@ namespace image
 
 using namespace std;
 
+template<typename S>
 class ImgSys
 {
 	public:
@@ -46,8 +47,9 @@ class ImgSys
 		ImgSys(Uint32 colorkey) : _colorkey(colorkey) {}
 		virtual ~ImgSys() {}
 
-		int reload(string filename, SDL_Surface **surface);
-		int load(string filename, SDL_Surface **surface);
+		//int reload(string filename, SDL_Surface **surface);
+		int load(string filename, S *surface);
+		S loadr(string filename, S *surface);
 		//int load(string filename, map<std::string, SDL_Surface *> *surfaces);//FIXME map
 
 		int set_colorkey(uint32_t ck) { _colorkey = ck; return ck; }
@@ -56,7 +58,7 @@ class ImgSys
 	protected:
 
 	private:
-		int filein(string filename, SDL_Surface **surface = NULL);		
+		int filein(string filename, S *surface = NULL);
 	private:
 		uint32_t _colorkey;
 
