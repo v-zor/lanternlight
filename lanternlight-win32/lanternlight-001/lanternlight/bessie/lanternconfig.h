@@ -29,7 +29,7 @@
 #define LANTERNCONFIG_H_
 
 
-#define GAMEFILEROOT "../lanternlight/pics/"
+#define GAMEFILEROOT "../lanternlight/"
 
 
 #endif /* LANTERNCONFIG_H_ */
