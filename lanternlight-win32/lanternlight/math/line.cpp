@@ -29,6 +29,7 @@
 #include<iostream>
 #include<cmath>
 #include "polygon.h"
+#include "line.h"
 
 namespace lanternlight
 {
@@ -41,8 +42,7 @@ Line<S>::Line(int x1, int y1, int x2, int y2)
 	_x2 = x2;
 	_y2 = y2;
 
-	_linetype = quadrant();
-
+	_linetype->set(quadrant());
 }
 
 template<typename S>
@@ -51,23 +51,23 @@ Line<S>::~Line()
 
 
 template<typename S>
-LINETYPE Line<S>::quadrant()
+LineType::LINETYPE Line<S>::quadrant()
 {
 	//FIX calculate quadrant from x1,y1 and x2,y2
 	//left upper lines for collide, first quadrant
 	if (_x1 <= _x2 && _y1 <= _y2)
-		return QUADRANT1LINE;
+		return LineType::QUADRANT1LINE;
 	//right upper lines for collide, second quadrant
 	if (_x1 <= _x2 && _y1 >= _y2)
-		return QUADRANT2LINE;	
+		return LineType::QUADRANT2LINE;
 	//right down lines for collide, third quadrant
 	if (_x1 >= _x2 && _y1 <= _y2)
-		return QUADRANT3LINE;	
+		return LineType::QUADRANT3LINE;
 	//left down lines for collide, fourth quadrant
 	if (_x1 >= _x2 && _y1 >= _y2)
-		return QUADRANT4LINE;	
+		return LineType::QUADRANT4LINE;
 
-	return NOLINE;
+	return LineType::NOLINE;
 }
 
 template<typename S>
@@ -92,6 +92,7 @@ template<typename S>
 float Line<S>::crossproduct(Line *ln)
 {
 	/////////return (this->norm()  * ln->norm() * sin(3.14152829/2));
+	return 0.0;//FIX
 }
 
 template<typename S>
@@ -101,5 +102,7 @@ float Line<S>::distance(int entityx, int entityy)
 	return 100;	
 
 }
+
+template class Line<LineType *>;
 
 } //namespace lanternlight

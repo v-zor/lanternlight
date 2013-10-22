@@ -41,10 +41,10 @@ class Polygon
 	Polygon();
 	virtual ~Polygon();
 
-	void addline(Line<LineType> *ln);
+	void addline(Line<LineType *> *ln);
 
 	protected:
-	std::vector<Line<LineType> *> *_lines;
+	std::vector<Line<LineType *> *> *_lines;
 };	
 
 }//namespace lanternlight

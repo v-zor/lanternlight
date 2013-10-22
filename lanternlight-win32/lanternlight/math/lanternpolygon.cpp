@@ -30,6 +30,7 @@
 #include<limits.h>
 #include "../bessie/util.h"
 #include "lanternpolygon.h"
+#include "line.h"
 
 namespace lanternlight
 {
@@ -48,12 +49,12 @@ int LanternPolygon::initclosestline(int entityx, int entityy)
 {
 	int min = INT_MAX;
 	int index = 0;
-	for (std::vector<Line<LineType> *>::iterator vi = _lines->begin(); vi != _lines->end(); vi++, index++) {
+/*FIX	for (std::vector<Line<LineType *> *>::iterator vi = _lines->begin(); vi != _lines->end(); vi++, index++) {
 		if ((*vi)->distance(entityx,entityy) < min)
 			min = (*vi)->distance(entityx, entityy);
 			_currentn = index;
 	}
-
+*/
 	if (min == INT_MAX)
 		return -1;
 	else
@@ -71,29 +72,28 @@ int LanternPolygon::initclosestline(int entityx, int entityy)
 int LanternPolygon::go(int entityx, int entityy)
 {
 
-	Line<LineType> *currentline = (*_lines)[_currentn];
+	Line<LineType *> *currentline = (*_lines)[_currentn];
 
-	Line<LineType> *ln1 = new Line<LineType>(currentline->get_x1(), currentline->get_y1(),
+	Line<LineType *> *ln1 = new Line<LineType *>(currentline->get_x1(), currentline->get_y1(),
 				entityx, entityy);
-	Line<LineType> *ln2 = new Line<LineType>(currentline->get_x2(), currentline->get_y2(),
+	Line<LineType *> *ln2 = new Line<LineType *>(currentline->get_x2(), currentline->get_y2(),
 				entityx, entityy);
-
 	//FIX dynamic_cast
 	switch(currentline->quadrant()) {
-	case QUADRANT1LINE:{
+	case LineType::QUADRANT1LINE:{
 		switch (ln1->quadrant()) {
-		case QUADRANT1LINE:{
-			/* same quadrant, collider currentline stays the same */
+		case LineType::QUADRANT1LINE:{
+			/* same LineType::QUADRANT, collider currentline stays the same */
 			break;
 		}
-		case QUADRANT2LINE:{
+		case LineType::QUADRANT2LINE:{
 			++_currentn %= _lines->size();
 			break;
 		}
-		case QUADRANT3LINE:{
+		case LineType::QUADRANT3LINE:{
 			break;
 		}
-		case QUADRANT4LINE:{
+		case LineType::QUADRANT4LINE:{
 			/* entity went down, currentline becomes something else */
 			--_currentn;
 			if (_currentn == 0)
@@ -104,46 +104,46 @@ int LanternPolygon::go(int entityx, int entityy)
 			break;
 	}
 	}
-	case QUADRANT2LINE:{
+	case LineType::QUADRANT2LINE:{
 		switch (ln1->quadrant()) {
-		case QUADRANT1LINE:{
+		case LineType::QUADRANT1LINE:{
 			/* entity went down, currentline becomes something else */
 			--_currentn;
 			if (_currentn == 0)
 				_currentn = _lines->size()-1;
 			break;
 		}
-		case QUADRANT2LINE:{
-			/* same quadrant, collider currentline stays the same */
+		case LineType::QUADRANT2LINE:{
+			/* same LineType::QUADRANT, collider currentline stays the same */
 			break;
 		}
-		case QUADRANT3LINE:{
+		case LineType::QUADRANT3LINE:{
 			++_currentn %= _lines->size();
 			break;
 		}
-		case QUADRANT4LINE:{
+		case LineType::QUADRANT4LINE:{
 			break;
 		}
 		default:
 			break;
 	}
 	}
-	case QUADRANT3LINE:{ 
+	case LineType::QUADRANT3LINE:{
 		switch (ln1->quadrant()) {
-		case QUADRANT1LINE:{
-			/* same quadrant, collider currentline stays the same */
+		case LineType::QUADRANT1LINE:{
+			/* same LineType::QUADRANT, collider currentline stays the same */
 			break;
 		}
-		case QUADRANT2LINE:{
+		case LineType::QUADRANT2LINE:{
 			--_currentn;
 			if (_currentn == 0)
 				_currentn = _lines->size()-1;
 			break;
 		}
-		case QUADRANT3LINE:{
+		case LineType::QUADRANT3LINE:{
 			break;
 		}
-		case QUADRANT4LINE:{
+		case LineType::QUADRANT4LINE:{
 			/* entity went down, currentline becomes something else */
 			++_currentn %= _lines->size();
 			break;
@@ -152,24 +152,24 @@ int LanternPolygon::go(int entityx, int entityy)
 			break;
 	}
 	}
-	case QUADRANT4LINE:{ 
+	case LineType::QUADRANT4LINE:{
 		switch (ln1->quadrant()) {
-		case QUADRANT1LINE:{
+		case LineType::QUADRANT1LINE:{
 			/* entity went down, currentline becomes something else */
 			++_currentn %= _lines->size();
 			break;
 		}
-		case QUADRANT2LINE:{
+		case LineType::QUADRANT2LINE:{
 			break;
 		}
-		case QUADRANT3LINE:{
+		case LineType::QUADRANT3LINE:{
 			--_currentn;
 			if (_currentn == 0)
 				_currentn = _lines->size()-1;
 			break;
 		}
-		case QUADRANT4LINE:{
-			/* same quadrant, collider currentline stays the same */
+		case LineType::QUADRANT4LINE:{
+			/* same LineType::QUADRANT, collider currentline stays the same */
 			break;
 		}
 		default:

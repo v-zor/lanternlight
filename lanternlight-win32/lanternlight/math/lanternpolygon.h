@@ -45,7 +45,7 @@ class LanternPolygon : public Polygon
 
 	protected:
 	int _currentn;
-	std::vector<Line<LineType> *>::iterator _linesiter;
+	std::vector<Line<LineType *> *>::iterator _linesiter;
 
 
 };	

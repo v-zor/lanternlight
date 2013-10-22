@@ -30,6 +30,7 @@
 
 #include "../include/SDL.h"
 #include "../bessie/line2array.h"
+#include "linetype.h"
 
 namespace lanternlight
 {
@@ -41,16 +42,6 @@ class Point
 		int _x, _y;
 };
 
-enum LINETYPE { QUADRANT1LINE = 100, QUADRANT2LINE = 200, QUADRANT3LINE = 300, QUADRANT4LINE = 400, NOLINE = 500,}; 
-
-class LineType
-{
-	public:
-		LINETYPE _id;
-
-	LINETYPE operator()() { return _id; }
-
-};
 
 template<typename S>
 class Line
@@ -68,12 +59,12 @@ class Line
 	int get_x2() { return _x2; }
 	int get_y2() { return _y2; }
 
-	LINETYPE quadrant();
+	LineType::LINETYPE quadrant();
 
 	protected:
 
 	private:
-	LineType _linetype;
+	S _linetype;
 	int _x1,_y1,_x2,_y2;
 };	
 

@@ -38,10 +38,10 @@ using namespace std;
 
 int ImgSys::load(string filename, SDL_Surface **surface)
 {
-	if ( !filename.length() ) { *surface = NULL; return(-1); } 
+/*FIX	if ( !filename.length() ) { *surface = NULL; return(-1); }
 	if ( filein(filename, surface) && surface != NULL) { return(0); }
 	//never reached.
-	return -1;
+	*/return -1;
 }
 /***
 int ImgSys::load(string filename, map<std::string, SDL_Surface *> *surfaces)
@@ -63,15 +63,15 @@ int ImgSys::load(string filename, map<std::string, SDL_Surface *> *surfaces)
 ***/
 int ImgSys::reload(string filename, SDL_Surface **surface)
 {
-	if ( !*surface ) { SDL_FreeSurface(*surface); *surface = NULL; }
-	filein(filename, surface); 
+	//FIXif ( !*surface ) { SDL_FreeSurface(*surface); *surface = NULL; }
+	//filein(filename, surface);
 	return(0);
 }
 
 int ImgSys::filein(string filename, SDL_Surface **surface)
 {
-	SDL_Surface *ts = SDL_LoadBMP(const_cast<char*>(bessie::cs(filename)));//cs returns c_str
-	/*FIX *surface = SDL_DisplayFormat(ts);
+	/*FIXSDL_Surface *ts = SDL_LoadBMP(const_cast<char*>(bessie::cs(filename)));//cs returns c_str
+	 *surface = SDL_DisplayFormat(ts);
 	SDL_SetColorKey (*surface,SDL_SRCCOLORKEY,_colorkey);*/
 	return(0);
 }

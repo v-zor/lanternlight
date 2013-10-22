@@ -34,7 +34,7 @@ namespace lanternlight
 
 Polygon::Polygon()
 {
-	_lines = new std::vector<Line<LineType> *>;
+	_lines = new std::vector<Line<LineType *> *>;
 }
 
 Polygon::~Polygon()
@@ -42,7 +42,7 @@ Polygon::~Polygon()
 	delete _lines;
 }
 
-void Polygon::addline(Line<LineType> *ln)
+void Polygon::addline(Line<LineType *> *ln)
 {
 	_lines->push_back(ln);
 }

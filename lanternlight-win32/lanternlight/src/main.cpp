@@ -31,10 +31,12 @@
 #include "../bessie/line2array.h"
 #include "../bessie/ImgSys.h"
 
-int main(int argc, char *argv[])
+int wmain(int argc, wchar_t *argv[])
+//int _tmain()
+//int main(/*int argc, char *argv[]*/)
 {
 
-	SDL_Init(SDL_INIT_EVERYTHING);
+	//FIX SDL_Init(SDL_INIT_EVERYTHING);
 
 	SDL_Surface *screen;/*FIX = SDL_SetVideoMode(800,600,32,SDL_DOUBLEBUF|SDL_HWSURFACE); */
 
@@ -55,14 +57,15 @@ int main(int argc, char *argv[])
 	while (!terminate)
 	{
 		SDL_Event e;
-		while (SDL_PollEvent(&e)) {
+		//while (SDL_PollEvent(&e))
+		{
 		switch(e.type){
 		case SDL_QUIT:
 			terminate = true;
 			break;
 		case SDL_MOUSEBUTTONDOWN:{
 			int xx,yy;
-			SDL_GetMouseState(&xx,&yy);
+			//FIX SDL_GetMouseState(&xx,&yy);
 			//bessie::line2array(&x1,&y1,&x2,&y2);
 			player.moveto(xx,yy);
 			player.setmoving(1);
@@ -74,7 +77,7 @@ int main(int argc, char *argv[])
 		}
 		}
 		}
-		SDL_BlitSurface(blanksurface, NULL,screen,&screenr);
+		//FIX SDL_BlitSurface(blanksurface, NULL,screen,&screenr);
 		player.update();	
 		//FIX player.draw(screen);
 		//FIX SDL_Flip(screen);
