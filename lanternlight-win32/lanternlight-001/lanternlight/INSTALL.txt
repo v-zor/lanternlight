@@ -1,3 +1,12 @@
+
+Prerequisites :
+
+OpenSceneGraph (headers and libs are included), OpenGL
+
+You better use the provided libraries and header files of lanternlight,
+which have been modified for better compilation on Windows. The libraries are
+for x86 Windows.
+
 edit GAMEFILEROOT to your "./pics/" top directory in lanternconfig.h (in bessie directory)
 
 then load the top directory (where this file is) in eclipse and build & run.

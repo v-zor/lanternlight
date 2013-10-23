@@ -49,7 +49,7 @@ class ImgSys
 
 		//int reload(string filename, SDL_Surface **surface);
 		int load(string filename, S *surface);
-		S loadr(string filename, S *surface);
+		//S loadr(string filename, S *surface);
 		//int load(string filename, map<std::string, SDL_Surface *> *surfaces);//FIXME map
 
 		int set_colorkey(uint32_t ck) { _colorkey = ck; return ck; }
