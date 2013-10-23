@@ -7,6 +7,10 @@ You better use the provided libraries and header files of lanternlight,
 which have been modified for better compilation on Windows. The libraries are
 for x86 Windows.
 
+OpenGL binary dll libraries can be found at : http://blog.lloydsparkes.co.uk/2010/01/opengl-mesa3d-programming-in-visual-studio/
+SDL binary dll libraries can be found at http://www.libsdl.org/ (These are
+version 1.2 and aer usually called SDL-devel-xxx.zip)
+
 edit GAMEFILEROOT to your "./pics/" top directory in lanternconfig.h (in bessie directory)
 
 then load the top directory (where this file is) in eclipse and build & run.
