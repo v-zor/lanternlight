@@ -42,15 +42,17 @@
 #pragma comment(lib, "SDLmain.lib")
 //#endif
 
-
+#include "../blend/window.h"
 
 int main(int argc, char *argv[])
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	SDL_Surface *screen = SDL_SetVideoMode(800,600,32,SDL_DOUBLEBUF|SDL_HWSURFACE);
+	//SDL_Init(SDL_INIT_EVERYTHING);
+	//SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	//SDL_Surface *screen = SDL_SetVideoMode(800,600,32,SDL_DOUBLEBUF|SDL_HWSURFACE);
 
 	//lanternlight::Player player(100,100);
+
+	Window window;
 
 	bessie::image::Surface<SDL_Surface *> blanksurface;
 	blanksurface.load(std::string(GAMEFILEROOT) + std::string("tile1grass.bmp"));
@@ -93,10 +95,10 @@ int main(int argc, char *argv[])
 		}
 		}
 		}
-		SDL_BlitSurface(blanksurface.get(), NULL,screen,&screenr);
+		//SDL_BlitSurface(blanksurface.get(), NULL,screen,&screenr);
 		//player.update();
 		//player.draw(screen);
-		SDL_Flip(screen);
+		//SDL_Flip(screen);
 	}
 
 	return 0;
