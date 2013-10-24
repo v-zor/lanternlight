@@ -44,7 +44,8 @@ using std::string;
 
 namespace blend
 {
-
+namespace window
+{
 class Window{
 public:
     Window();
@@ -68,5 +69,6 @@ private:
     Window(const Window& window);
     const Window& operator=(const Window& window);
 };
+}
 }
 #endif

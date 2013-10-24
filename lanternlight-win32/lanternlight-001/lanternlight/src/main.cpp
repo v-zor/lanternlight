@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
 	//lanternlight::Player player(100,100);
 
-	blend::window::Window window;
+	blend::osgwindow::osgWindow window;
 
 	//bessie::image::Surface<SDL_Surface *> blanksurface;
 	//blanksurface.load(std::string(GAMEFILEROOT) + std::string("tile1grass.bmp"));

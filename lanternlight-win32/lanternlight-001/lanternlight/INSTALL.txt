@@ -1,19 +1,34 @@
 
-Prerequisites :
+Prerequisites for Building lanternlight on Windows (win32) :
+============================================================
+OpenSceneGraph (headers and .libs are included), OpenGL (also included, see
+include/ and lib/ and lib.dll/ directories in this directory)
 
-OpenSceneGraph (headers and libs are included), OpenGL
+The supported version of OSG (OpenSceneGraph is 3.0.1.
 
+Installation and Compilation :
+==============================
 You better use the provided libraries and header files of lanternlight,
 which have been modified for better compilation on Windows. The libraries are
 for x86 Windows.
 
-OpenGL binary dll libraries can be found at : http://blog.lloydsparkes.co.uk/2010/01/opengl-mesa3d-programming-in-visual-studio/
+OpenGL binary dll libraries can be found at : 
+http://blog.lloydsparkes.co.uk/2010/01/opengl-mesa3d-programming-in-visual-studio/
 SDL binary dll libraries can be found at http://www.libsdl.org/ (These are
 version 1.2 and aer usually called SDL-devel-xxx.zip)
 
 NOTE : dll libraries are present in this project's lib.dll directory,
-you can use them by copying them into your Windows PATH
+you can use them by copying them into your Windows PATH (e.g. C:\Windows\)
 
 edit GAMEFILEROOT to your "./pics/" top directory in lanternconfig.h (in bessie directory)
 
-then load the top directory (where this file is) in eclipse and build & run.
+Loading into the eclipse C/C++ IDE :
+====================================
+
+Load the top directory (where this file is, usually called 
+lanternlight-001/) in a new project in eclipse, right-click on the project
+then click "refresh" and build & run. If you add files or something always 
+refresh your lanternlight-001 directory and make sure the .libs get linked in
+by clicking Properties->C/C++ build->linker and then adding the lib/ directory.
+
+Enjoy, happy hacking.

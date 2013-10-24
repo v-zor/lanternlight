@@ -1,12 +1,12 @@
 /*
-# Copyright (C) Johan Ceuppens 2010--2013
+# Copyright (C) Johan Ceuppens 2010-2013
 # Redistribution and use in source and binary forms are permitted
 # provided that the above copyright notice and this paragraph are
 # duplicated in all such forms and that any documentation,
 # advertising materials, and other materials related to such
 # distribution and use acknowledge that the software was developed
-# by the silverhawk.  The name of the
-# silverhawk may not be used to endorse or promote products derived
+# by the Johan Ceuppens.  The name of the
+# Johan Ceuppens may not be used to endorse or promote products derived
 # from this software without specific prior written permission.
 # THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
@@ -25,15 +25,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "osgwindow.h"
+#include "osgWindow.h"
 
 namespace blend
 {
-namespace window
+namespace osgwindow
 {
 ////////////////////////////////////////////////////////////////////////////////
-Window::
-Window():
+osgWindow::
+osgWindow():
 	_scene_view(NULL),         //Initialize our two new data members
 	_global_camera(NULL)
 {
@@ -108,7 +108,7 @@ Window():
 	   Param 4 - height
 	   
 	   Note that x and y define the starting coordinates offset from the lower
-	   lefthand corner of the window. (0, 0) means start AT the corner. Any
+	   lefthand corner of the osgWindow. (0, 0) means start AT the corner. Any
 	   other value will move the viewport starting coordinates away from this
 	   corner towards the middle of the screen. The last two parameters define 
 	   the size of the viewport.
@@ -118,7 +118,7 @@ Window():
 	/*
 	   Setting the camera as a perspective matrix. This means our camera view
 	   will contain the typical perspective properties, such as depth and
-	   skewing/stretching of objects around the edges of the window.
+	   skewing/stretching of objects around the edges of the osgWindow.
 	*/
 	_global_camera->setProjectionMatrixAsPerspective(
 	   45.0,       //Field of view angle - controls level of perspective
@@ -160,17 +160,17 @@ Window():
 	_scene_view->init();
 }
 ////////////////////////////////////////////////////////////////////////////////
-Window::
-~Window(){
+osgWindow::
+~osgWindow(){
     SDL_Quit();
 }
 ////////////////////////////////////////////////////////////////////////////////
-/*void Window::
+/*void osgWindow::
 set_module_registry(Module_Registry& registry){
     _module_registry = &registry;
 }*/
 ////////////////////////////////////////////////////////////////////////////////
-void Window::
+void osgWindow::
 draw(){
     //Update the scene view data
 	_scene_view->update(); 

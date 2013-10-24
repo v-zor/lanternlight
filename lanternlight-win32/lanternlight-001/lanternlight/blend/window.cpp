@@ -30,7 +30,8 @@
 
 namespace blend
 {
-
+namespace window
+{
 Window::
 Window()
 	: _blender()
@@ -190,4 +191,5 @@ draw(){
 	//_scene_view->draw();
 }
 ////////////////////////////////////////////////////////////////////////////////
+}
 }

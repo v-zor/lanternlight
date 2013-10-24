@@ -5,8 +5,8 @@
 # duplicated in all such forms and that any documentation,
 # advertising materials, and other materials related to such
 # distribution and use acknowledge that the software was developed
-# by the silverhawk.  The name of the
-# silverhawk may not be used to endorse or promote products derived
+# by the Johan Ceuppens.  The name of the
+# Johan Ceuppens may not be used to endorse or promote products derived
 # from this software without specific prior written permission.
 # THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
 # IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
@@ -37,13 +37,13 @@ using std::string;
 
 namespace blend
 {
-namespace window
+namespace osgwindow
 {
 
-class Window{
+class osgWindow{
 public:
-    Window();
-    ~Window();
+    osgWindow();
+    ~osgWindow();
 
     void draw();
     
@@ -53,8 +53,8 @@ private:
     osg::ref_ptr<osgUtil::SceneView> _scene_view;
     osg::ref_ptr<osg::CameraNode>    _global_camera;
 
-    Window(const Window& window);
-    const Window& operator=(const Window& window);
+    osgWindow(const osgWindow& window);
+    const osgWindow& operator=(const osgWindow& window);
 };
 
 }
