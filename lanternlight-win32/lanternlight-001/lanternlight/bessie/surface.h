@@ -45,6 +45,7 @@ class Surface
 {
 public:
 	Surface();
+	Surface(const S& surf);
 	virtual ~Surface();
 
 	int load(string filename);

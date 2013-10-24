@@ -34,6 +34,7 @@ using std::string;
 
 #include "../include/osg/CameraNode"
 #include "../include/osgUtil/SceneView"
+#include "../bessie/surface.h"
 
 namespace blend
 {
@@ -42,17 +43,22 @@ namespace osgwindow
 
 class osgWindow{
 public:
-    osgWindow();
+    osgWindow(int w, int h);
     ~osgWindow();
 
     void draw();
+    int draw(bessie::image::Surface<SDL_Surface *> *surface);
     
 private:
-    
+
     //OSG Objects - a scene view, and a camera that goes with this scene
     osg::ref_ptr<osgUtil::SceneView> _scene_view;
     osg::ref_ptr<osg::CameraNode>    _global_camera;
 
+    bessie::image::Surface<SDL_Surface *> *_screen;
+    SDL_Rect *_screenr;
+
+    //do not implement
     osgWindow(const osgWindow& window);
     const osgWindow& operator=(const osgWindow& window);
 };

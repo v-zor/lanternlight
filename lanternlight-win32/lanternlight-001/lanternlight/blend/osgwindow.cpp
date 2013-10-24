@@ -33,9 +33,11 @@ namespace osgwindow
 {
 ////////////////////////////////////////////////////////////////////////////////
 osgWindow::
-osgWindow():
+osgWindow(int w, int h):
 	_scene_view(NULL),         //Initialize our two new data members
-	_global_camera(NULL)
+	_global_camera(NULL),
+	_screen(NULL)//,
+//	_screenr(NULL)
 {
 ////////////////////////////////////////////////////////////////////////////////
 //SDL Initialization
@@ -63,11 +65,20 @@ osgWindow():
 	   SDL_HWSURFACE. This tells SDL to expect 3D data from OpenGL calls instead
 	   of 2D blitting. Without this, nothing would be drawn on screen.
     */
-    if(!SDL_SetVideoMode(640, 480, 0, SDL_OPENGL)){
+	_screen = new bessie::image::Surface<SDL_Surface *>(SDL_SetVideoMode(w, h, 0, SDL_OPENGL));
+
+    if(!_screen->get()) {
         string error("Error: SDL Could not create Video Surface.");
         error += SDL_GetError();
         throw error;
     }
+
+	_screenr = new SDL_Rect;
+	_screenr->x = 0;
+	_screenr->y = 0;
+	_screenr->w = w;//FIX
+	_screenr->h = h;
+
 ////////////////////////////////////////////////////////////////////////////////
 //OSG Initialization
     /*
@@ -182,5 +193,55 @@ draw(){
 	_scene_view->draw();
 }
 ////////////////////////////////////////////////////////////////////////////////
+
+int osgWindow::draw(bessie::image::Surface<SDL_Surface *> *surface)
+{
+//blend::osgwindow::osgWindow window;
+
+//	bessie::image::Surface<SDL_Surface *> blanksurface;
+//	blanksurface.load(std::string(GAMEFILEROOT) + std::string("../lanternlight/pics/tile1grass.bmp"));
+
+		SDL_BlitSurface(surface->get(), NULL,_screen->get(),_screenr);
+		//player.update();
+		//player.draw(screen);
+		//SDL_Flip(screen);
+	//}
+	return 0;
+}
+
+/*
+
+
+SDL_Rect screenr;
+screenr.x = 0;
+screenr.y = 0;
+screenr.w = 800;//FIX
+screenr.h = 600;
+
+
+bool terminate  = false;
+while (!terminate)
+{
+	SDL_Event e;
+	while (SDL_PollEvent(&e))
+	{
+	switch(e.type){
+	case SDL_QUIT:
+		terminate = true;
+		break;
+	case SDL_MOUSEBUTTONDOWN:{
+		int xx,yy;
+		//FIX SDL_GetMouseState(&xx,&yy);
+		//bessie::line2array(&x1,&y1,&x2,&y2);
+		//player.moveto(xx,yy);
+		//player.setmoving(1);
+		break;
+	}
+	case SDL_MOUSEBUTTONUP:{
+		//player.setmoving(0);
+		break;
+	}
+	}
+	}*/
 }
 }

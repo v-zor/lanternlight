@@ -42,6 +42,12 @@ Surface<S>::Surface()
 }
 
 template<typename S>
+Surface<S>::Surface(const S& surf)
+{
+	_surface = const_cast<S&>(surf);
+}
+
+template<typename S>
 Surface<S>::~Surface()
 {
 	//FIX if (_surface != NULL) ;
