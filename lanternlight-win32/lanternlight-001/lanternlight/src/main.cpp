@@ -42,7 +42,7 @@
 #pragma comment(lib, "SDLmain.lib")
 //#endif
 
-#include "../blend/window.h"
+#include "../blend/osgwindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -52,10 +52,10 @@ int main(int argc, char *argv[])
 
 	//lanternlight::Player player(100,100);
 
-	Window window;
+	blend::window::Window window;
 
-	bessie::image::Surface<SDL_Surface *> blanksurface;
-	blanksurface.load(std::string(GAMEFILEROOT) + std::string("tile1grass.bmp"));
+	//bessie::image::Surface<SDL_Surface *> blanksurface;
+	//blanksurface.load(std::string(GAMEFILEROOT) + std::string("tile1grass.bmp"));
 
 	//bessie::image::ImgSys<SDL_Surface *> imgsys;
 	//imgsys.set_colorkey(0xffffffff);

@@ -25,30 +25,27 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "window.h"
-////////////////////////////////////////////////////////////////////////////////
+#include "osgwindow.h"
 
 namespace blend
 {
-
+namespace window
+{
+////////////////////////////////////////////////////////////////////////////////
 Window::
-Window()
-	: _blender()
-
-//:
-    //_module_registry(NULL),
-	//_scene_view(NULL),         //Initialize our two new data members
-	//_global_camera(NULL)
+Window():
+	_scene_view(NULL),         //Initialize our two new data members
+	_global_camera(NULL)
 {
 ////////////////////////////////////////////////////////////////////////////////
 //SDL Initialization
-/*
+
     if(SDL_Init(SDL_INIT_VIDEO)){
         string error("Error: SDL Could not be initialized: ");
         error += SDL_GetError();
         throw error;
     }
-  */
+    
     /*
         Now we must setup the video rendering mode. Unlike the first tutorial,
         we use OpenGL via OSG libraries for our rendering system. OSG translates
@@ -59,20 +56,19 @@ Window()
         In this case, we want to enable double buffering for an increase in 
         rendering efficiency.
 	*/
-	//SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	
 	/*
 	   Note here that we change the video mode type to SDL_OPENGL, instead of
 	   SDL_HWSURFACE. This tells SDL to expect 3D data from OpenGL calls instead
 	   of 2D blitting. Without this, nothing would be drawn on screen.
     */
- /*   if(!SDL_SetVideoMode(640, 480, 0, SDL_OPENGL)){
+    if(!SDL_SetVideoMode(640, 480, 0, SDL_OPENGL)){
         string error("Error: SDL Could not create Video Surface.");
         error += SDL_GetError();
         throw error;
     }
-*/
-	////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //OSG Initialization
     /*
         Setup the OSG SceneView. A SceneView is an object that encompasses all
@@ -83,24 +79,24 @@ Window()
         or any other fancy stuff. However, it does create an osg::CameraNode for
         us, which we will manipulate later in the file.
     */
-//	_scene_view = new osgUtil::SceneView();
+	_scene_view = new osgUtil::SceneView();
 	
 	/*
 	   Set the scene to have default lighting/color values.
 	*/
-//	_scene_view->setDefaults();
+	_scene_view->setDefaults();
 	
 	/*
 	   Optional optimization function to control face culling. Do not cull objects
 	   outside of our viewing range.
 	*/
-//	_scene_view->setComputeNearFarMode(osgUtil::CullVisitor::DO_NOT_COMPUTE_NEAR_FAR);
+	_scene_view->setComputeNearFarMode(osgUtil::CullVisitor::DO_NOT_COMPUTE_NEAR_FAR);
 	
     ////////////////////////////////////////////////////////////////////////////
     /*
         Setup the global OSG camera. Use the default found within our scene view.
     */
-//	 _global_camera = _scene_view->getCamera();
+	 _global_camera = _scene_view->getCamera();
 	 
 	/*
 	   Set the dimensions of the viewport. In other words, define the viewing
@@ -117,25 +113,25 @@ Window()
 	   corner towards the middle of the screen. The last two parameters define 
 	   the size of the viewport.
 	*/
-//	_global_camera->setViewport(0, 0, 640, 480);
+	_global_camera->setViewport(0, 0, 640, 480);
 	
 	/*
 	   Setting the camera as a perspective matrix. This means our camera view
 	   will contain the typical perspective properties, such as depth and
 	   skewing/stretching of objects around the edges of the window.
 	*/
-//	_global_camera->setProjectionMatrixAsPerspective(
-//	   45.0,       //Field of view angle - controls level of perspective
-//	   _global_camera->getViewport()->aspectRatio(),    //Aspect Ratio of the perspective
+	_global_camera->setProjectionMatrixAsPerspective(
+	   45.0,       //Field of view angle - controls level of perspective
+	   _global_camera->getViewport()->aspectRatio(),    //Aspect Ratio of the perspective
 	               /*
 	                   ZNear/Far control object drawing on the Z axis,
 	                   (towards/away from viewer). Between these two ranges,
 	                   objects are drawn. Outside of these ranges, the objects
 	                   will not be drawn.
 	               */
-//	   0.1,        //ZNear - The closest to the camera an object may be drawn
-//	   1000.0      //ZFar - Furthest distance from the camera an object may be drawn.
-//	   );
+	   0.1,        //ZNear - The closest to the camera an object may be drawn
+	   1000.0      //ZFar - Furthest distance from the camera an object may be drawn.
+	   );
 	
     /*
         Set the clear (background) color for this camera node. In this case, we
@@ -149,19 +145,19 @@ Window()
         camera, thus this setting of the clear color is redundant. If we wanted
         to change the color to green, then this would be warranted.
     */
-/*	_global_camera->setClearColor(osg::Vec4(
+	_global_camera->setClearColor(osg::Vec4(
 	   0.2,       //Red
 	   0.2,       //Green
 	   0.4,       //Blue
 	   0.0        //Opacity/alpha
 	   ));
-  */
+    
 
     /*
         Finally Initialize our scene view. This tells the scene to update it's
         internal data to reflect any changes in children.
     */
-//	_scene_view->init();
+	_scene_view->init();
 }
 ////////////////////////////////////////////////////////////////////////////////
 Window::
@@ -176,18 +172,15 @@ set_module_registry(Module_Registry& registry){
 ////////////////////////////////////////////////////////////////////////////////
 void Window::
 draw(){
-
-	//_blender->update();
-	//_blender->draw();
-
-	//Update the scene view data
-	//_scene_view->update();
+    //Update the scene view data
+	_scene_view->update(); 
 	
 	//Perform culling of the scene for speed
-	//_scene_view->cull();
+	_scene_view->cull(); 
 	
 	//Draw the scene data to OpenGL buffers.
-	//_scene_view->draw();
+	_scene_view->draw();
 }
 ////////////////////////////////////////////////////////////////////////////////
+}
 }

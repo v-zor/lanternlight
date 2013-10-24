@@ -38,18 +38,21 @@ using std::string;
 namespace blend
 {
 
-template<typename S>
+template<typename SC, typename CAM>
 class osgBlend
 {
+public:
 	osgBlend();
-	virtual ~osgBlend();
+	virtual ~osgBlend() {}
 
 	void draw();
 	void update();
 
 private:
-	osg::ref_ptr<osgUtil::SceneView> _scene;
-	osg::ref_ptr<osg::CameraNode> _camera;
+	SC _scene;
+	CAM _camera;
+	//osg::ref_ptr<osgUtil::SceneView> _scene;
+	//osg::ref_ptr<osg::CameraNode> _camera;
 
 };
 

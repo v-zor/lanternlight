@@ -1,5 +1,5 @@
 /*
-# Copyright (C) Johan Ceuppens 2010--2013
+# Copyright (C) Johan Ceuppens 2010-2013
 # Redistribution and use in source and binary forms are permitted
 # provided that the above copyright notice and this paragraph are
 # duplicated in all such forms and that any documentation,
@@ -25,48 +25,39 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef OSGWINDOW_H
+#define OSGWINDOW_H
 
 #include "SDL.h"
 #include <string>
 using std::string;
 
-//#include "module_registry.h"
-//class Module_Registry;
-
-/*
-    OSG Includes for the objects
-*/
 #include "../include/osg/CameraNode"
 #include "../include/osgUtil/SceneView"
-#include "osgblend.h"
 
 namespace blend
+{
+namespace window
 {
 
 class Window{
 public:
     Window();
     ~Window();
-    
-//    void set_module_registry(Module_Registry& registry);
-    
-/*//////////////////////////////////////////////////////////////////////////////
-    This function is used to update the screen information. 
-//////////////////////////////////////////////////////////////////////////////*/
+
     void draw();
     
 private:
-//    Module_Registry * _module_registry;
     
     //OSG Objects - a scene view, and a camera that goes with this scene
-    //osg::ref_ptr<osgUtil::SceneView> _scene_view;
-    //osg::ref_ptr<osg::CameraNode>    _global_camera;
-    osgBlend<osgUtil::SceneView *, osg::CameraNode *> _blender;
+    osg::ref_ptr<osgUtil::SceneView> _scene_view;
+    osg::ref_ptr<osg::CameraNode>    _global_camera;
 
     Window(const Window& window);
     const Window& operator=(const Window& window);
 };
+
 }
+}
+
 #endif

@@ -31,8 +31,8 @@
 namespace blend
 {
 
-template<typename S>
-osgBlend<S>::osgBlend()
+template<typename SC, typename CAM>
+osgBlend<SC,CAM>::osgBlend()
 {
 	_scene = new osgUtil::SceneView();
 	_scene->setDefaults();
@@ -50,18 +50,20 @@ osgBlend<S>::osgBlend()
 	_scene->init();
 }
 
-template<typename S>
-void osgBlend<S>::update()
+template<typename SC, typename CAM>
+void osgBlend<SC,CAM>::update()
 {
 	_scene->update();
 	_scene->cull();
 	_scene->draw();
 }
 
-template<typename S>
-void osgBlend<S>::draw()
+template<typename SC, typename CAM>
+void osgBlend<SC,CAM>::draw()
 {
 	SDL_GL_SwapBuffers();
 }
+
+template class osgBlend<osgUtil::SceneView *, osg::CameraNode *>;
 
 }
