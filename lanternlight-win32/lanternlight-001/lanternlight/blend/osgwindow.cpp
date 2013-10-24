@@ -31,8 +31,8 @@ namespace blend
 {
 namespace osgwindow
 {
-////////////////////////////////////////////////////////////////////////////////
-osgWindow::
+template<typename S>
+osgWindow<S>::
 osgWindow(int w, int h):
 	_scene_view(NULL),         //Initialize our two new data members
 	_global_camera(NULL),
@@ -170,8 +170,9 @@ osgWindow(int w, int h):
     */
 	_scene_view->init();
 }
-////////////////////////////////////////////////////////////////////////////////
-osgWindow::
+
+template<typename S>
+osgWindow<S>::
 ~osgWindow(){
     SDL_Quit();
 }
@@ -180,8 +181,9 @@ osgWindow::
 set_module_registry(Module_Registry& registry){
     _module_registry = &registry;
 }*/
-////////////////////////////////////////////////////////////////////////////////
-void osgWindow::
+
+template<typename S>
+void osgWindow<S>::
 draw(){
     //Update the scene view data
 	_scene_view->update(); 
@@ -192,16 +194,16 @@ draw(){
 	//Draw the scene data to OpenGL buffers.
 	_scene_view->draw();
 }
-////////////////////////////////////////////////////////////////////////////////
 
-int osgWindow::draw(bessie::image::Surface<SDL_Surface *> *surface)
+template<typename S>
+int osgWindow<S>::draw(bessie::image::Surface<S> *surface)
 {
 //blend::osgwindow::osgWindow window;
 
 //	bessie::image::Surface<SDL_Surface *> blanksurface;
 //	blanksurface.load(std::string(GAMEFILEROOT) + std::string("../lanternlight/pics/tile1grass.bmp"));
 
-		SDL_BlitSurface(surface->get(), NULL,_screen->get(),_screenr);
+		SDL_BlitSurface(surface->get(), NULL,(S)(_screen->get()),_screenr);
 		//player.update();
 		//player.draw(screen);
 		//SDL_Flip(screen);
@@ -243,5 +245,8 @@ while (!terminate)
 	}
 	}
 	}*/
+
+template class osgWindow<SDL_Surface *>;
+
 }
 }

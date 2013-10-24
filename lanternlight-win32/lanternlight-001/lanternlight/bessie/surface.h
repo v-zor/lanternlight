@@ -52,6 +52,8 @@ public:
 	int filein(string filename);
 
 	S& get();
+	S& ref();//BFIX
+	unsigned int unref();//BFIX
 
 private:
 	S _surface;

@@ -78,6 +78,18 @@ S& Surface<S>::get()
 	return _surface;
 }
 
+template<typename S>
+S& Surface<S>::ref()
+{
+	return _surface;
+}
+
+template<typename S>
+unsigned int Surface<S>::unref()
+{
+	return 0;//_surface;
+}
+
 template class Surface<SDL_Surface *>;
 }
 }

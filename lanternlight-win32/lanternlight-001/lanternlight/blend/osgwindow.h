@@ -28,7 +28,7 @@
 #ifndef OSGWINDOW_H
 #define OSGWINDOW_H
 
-#include "SDL.h"
+#include "../include/SDL.h"
 #include <string>
 using std::string;
 
@@ -41,13 +41,14 @@ namespace blend
 namespace osgwindow
 {
 
+template<typename S>
 class osgWindow{
 public:
     osgWindow(int w, int h);
     ~osgWindow();
 
     void draw();
-    int draw(bessie::image::Surface<SDL_Surface *> *surface);
+    int draw(bessie::image::Surface<S> *surface);
     
 private:
 
@@ -55,7 +56,7 @@ private:
     osg::ref_ptr<osgUtil::SceneView> _scene_view;
     osg::ref_ptr<osg::CameraNode>    _global_camera;
 
-    bessie::image::Surface<SDL_Surface *> *_screen;
+    osg::ref_ptr<bessie::image::Surface<S> > _screen;
     SDL_Rect *_screenr;
 
     //do not implement
