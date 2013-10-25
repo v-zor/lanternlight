@@ -1,5 +1,5 @@
 /*
-# Copyright (C) Johan Ceuppens 2010-2013
+# Copyright (C) Johan Ceuppens 2010--2013
 # Redistribution and use in source and binary forms are permitted
 # provided that the above copyright notice and this paragraph are
 # duplicated in all such forms and that any documentation,
@@ -25,50 +25,40 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef OSGWINDOW_H
-#define OSGWINDOW_H
-
-#include "../include/SDL.h"
-#include <string>
-using std::string;
-
-#include "../include/osg/CameraNode"
-#include "../include/osgUtil/SceneView"
-#include "../bessie/surface.h"
-
 #include "render.h"
+#include<string>
+#include<iostream>
 
-namespace blend
+Renderer::
+Renderer():
+    _root(new osg::Group())
 {
-namespace osgwindow
-{
+    create_scene1();
+}
 
-template<typename S>
-class osgWindow{
-public:
-    osgWindow(int w, int h);
-    ~osgWindow();
+Renderer::
+~Renderer(){}
 
-    void draw();
-    int drawSurface(bessie::image::Surface<S> *surface);
+void Renderer::
+create_scene1(){
+
+	std::cout << "creating scene 1"<< std::endl;
+    osg::Node * model = osgDB::readNodeFile("../lanternlight/data/starthing.obj.data");
+    std::cout << "node file"<<std::endl;
+    if(!model){
+        throw std::string("Error! Could not load node file.");
+    }
     
-private:
-
-    //OSG Objects - a scene view, and a camera that goes with this scene
-    osg::ref_ptr<osgUtil::SceneView> _scene_view;
-    osg::ref_ptr<osg::CameraNode>    _global_camera;
-
-    osg::ref_ptr<bessie::image::Surface<S> > _screen;
-    SDL_Rect *_screenr;
-
-    Renderer *renderer;
-
-    //do not implement
-    osgWindow(const osgWindow& window);
-    const osgWindow& operator=(const osgWindow& window);
-};
-
+    std::cout << "creating scene 1.2"<< std::endl;
+    osg::PositionAttitudeTransform * model_pat = new osg::PositionAttitudeTransform();
+    
+    model_pat->setPosition(
+        //         x, y, z
+        osg::Vec3d(0, 0, -20)
+    );
+    
+    model_pat->addChild(model);
+    
+    _root->addChild(model_pat);
+    std::cout << "creating scene 1 finished."<< std::endl;
 }
-}
-
-#endif

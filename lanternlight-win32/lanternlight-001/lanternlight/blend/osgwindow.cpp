@@ -26,6 +26,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "osgWindow.h"
+#include "render.h"
+
+#include <iostream>
 
 namespace blend
 {
@@ -41,7 +44,7 @@ osgWindow(int w, int h):
 {
 ////////////////////////////////////////////////////////////////////////////////
 //SDL Initialization
-
+	std::cout << "creating osgWindow" <<std::endl;
     if(SDL_Init(SDL_INIT_VIDEO)){
         string error("Error: SDL Could not be initialized: ");
         error += SDL_GetError();
@@ -169,6 +172,11 @@ osgWindow(int w, int h):
         internal data to reflect any changes in children.
     */
 	_scene_view->init();
+
+	renderer = new Renderer;
+	_scene_view->setSceneData(renderer->getRoot());
+
+	std::cout << "osgWindow loaded" <<std::endl;
 }
 
 template<typename S>
@@ -196,7 +204,7 @@ draw(){
 }
 
 template<typename S>
-int osgWindow<S>::draw(bessie::image::Surface<S> *surface)
+int osgWindow<S>::drawSurface(bessie::image::Surface<S> *surface)
 {
 //blend::osgwindow::osgWindow window;
 

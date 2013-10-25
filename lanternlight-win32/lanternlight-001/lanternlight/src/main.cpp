@@ -54,8 +54,8 @@ int main(int argc, char *argv[])
 
 	blend::osgwindow::osgWindow<SDL_Surface *> window(640, 480);
 
-	bessie::image::Surface<SDL_Surface *> blanksurface;
-	blanksurface.load(std::string(GAMEFILEROOT) + std::string("../lanternlight/pics/tile1grass.bmp"));
+	//bessie::image::Surface<SDL_Surface *> blanksurface;
+	//blanksurface.load(std::string(GAMEFILEROOT) + std::string("../lanternlight/pics/tile1grass.bmp"));
 
 	//bessie::image::ImgSys<SDL_Surface *> imgsys;
 	//imgsys.set_colorkey(0xffffffff);
@@ -80,6 +80,7 @@ int main(int argc, char *argv[])
 		switch(e.type){
 		case SDL_QUIT:
 			terminate = true;
+			SDL_Quit();
 			break;
 		case SDL_MOUSEBUTTONDOWN:{
 			int xx,yy;
@@ -98,7 +99,8 @@ int main(int argc, char *argv[])
 		//SDL_BlitSurface(blanksurface.get(), NULL,screen,&screenr);
 		//player.update();
 		//player.draw(screen);
-		window.draw(&blanksurface);
+		//window.drawSurface(&blanksurface);
+		window.draw();
 		//SDL_Flip(screen);
 	}
 

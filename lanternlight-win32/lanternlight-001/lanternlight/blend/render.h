@@ -1,5 +1,5 @@
 /*
-# Copyright (C) Johan Ceuppens 2010-2013
+# Copyright (C) Johan Ceuppens 2010--2013
 # Redistribution and use in source and binary forms are permitted
 # provided that the above copyright notice and this paragraph are
 # duplicated in all such forms and that any documentation,
@@ -25,50 +25,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#ifndef OSGWINDOW_H
-#define OSGWINDOW_H
+#ifndef RENDER_H
+#define RENDER_H
 
-#include "../include/SDL.h"
-#include <string>
-using std::string;
-
-#include "../include/osg/CameraNode"
 #include "../include/osgUtil/SceneView"
-#include "../bessie/surface.h"
+#include "../include/osg/Group"
 
-#include "render.h"
+#include "../include/osgDB/ReadFile"
+#include "../include/osg/PositionAttitudeTransform"
 
-namespace blend
-{
-namespace osgwindow
-{
-
-template<typename S>
-class osgWindow{
+class Renderer{
 public:
-    osgWindow(int w, int h);
-    ~osgWindow();
+    Renderer();
+    ~Renderer();
 
-    void draw();
-    int drawSurface(bessie::image::Surface<S> *surface);
-    
+    osg::Group *getRoot() { return _root; }
+
 private:
+    void create_scene1();
 
-    //OSG Objects - a scene view, and a camera that goes with this scene
-    osg::ref_ptr<osgUtil::SceneView> _scene_view;
-    osg::ref_ptr<osg::CameraNode>    _global_camera;
-
-    osg::ref_ptr<bessie::image::Surface<S> > _screen;
-    SDL_Rect *_screenr;
-
-    Renderer *renderer;
-
-    //do not implement
-    osgWindow(const osgWindow& window);
-    const osgWindow& operator=(const osgWindow& window);
+    osg::Group *         _root;
 };
-
-}
-}
-
 #endif
